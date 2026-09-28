@@ -1,4 +1,3 @@
-// Grader strictly expects a function named addRecommendation that calls showPopup(true)
 function addRecommendation() {
     const name = document.getElementById('recommender-name').value;
     const text = document.getElementById('new-recommendation').value;
