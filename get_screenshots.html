@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenshot Generator for Task 4 & 5</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2canvas library to capture screenshots -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        #screenshot-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffeb3b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 9999;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            border: 2px solid #333;
+        }
+        #screenshot-panel h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .capture-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #1572B6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .capture-btn:hover {
+            background: #10598e;
+        }
+    </style>
+</head>
+<body>
+    <!-- We inject the exact same body as index.html so it looks identical -->
+    <nav class="navbar">
+        <div class="logo">Lithesh</div>
+        <ul class="nav-links">
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Project Details</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#recommendations">Recommendations</a></li>
+        </ul>
+        <a href="#top" class="home-icon"><i class="fas fa-home"></i></a>
+    </nav>
+
+    <div id="top"></div>
+
+    <section id="about" class="about-section">
+        <div class="profile-container">
+            <img src="https://ui-avatars.com/api/?name=Lithesh&background=0D8ABC&color=fff&size=150" alt="Profile Picture" class="profile-img">
+            <div class="profile-text">
+                <h1>Hi, I'm <span class="highlight-name">Lithesh</span></h1>
+                <p>I am a passionate web developer with a keen interest in building scalable, responsive, and user-friendly web applications. I love learning new technologies and solving complex problems to deliver great user experiences.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <h2>Project Details</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>E-Commerce Platform</h3>
+                <p>A full-stack e-commerce website built with React, Node.js, and MongoDB, featuring a fully functional cart and payment gateway integration.</p>
+            </div>
+            <div class="project-card">
+                <h3>Weather Dashboard</h3>
+                <p>A responsive weather application fetching real-time data using the OpenWeather API to display current conditions and a 5-day forecast.</p>
+            </div>
+            <div class="project-card">
+                <h3>Task Management App</h3>
+                <p>A collaborative task tracker featuring real-time updates and user authentication, built with Firebase and Vue.js.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill">
+                <i class="fab fa-html5 skill-icon" style="color: #E34F26;"></i>
+                <span>HTML5</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-css3-alt skill-icon" style="color: #1572B6;"></i>
+                <span>CSS3</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-js-square skill-icon" style="color: #F7DF1E;"></i>
+                <span>JavaScript</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-python skill-icon" style="color: #3776AB;"></i>
+                <span>Python</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-react skill-icon" style="color: #61DAFB;"></i>
+                <span>React</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="recommendations" class="recommendations-section">
+        <h2>Recommendations</h2>
+        <div id="recommendation-list" class="recommendation-list">
+            <div class="recommendation">
+                <p>"Lithesh is an outstanding developer who consistently delivers high-quality work on time." - Jane Doe</p>
+            </div>
+            <div class="recommendation">
+                <p>"A great team player with exceptional problem-solving skills. Highly recommended!" - John Smith</p>
+            </div>
+            <div class="recommendation">
+                <p>"Lithesh's dedication to learning and applying new concepts is truly inspiring." - Alice Johnson</p>
+            </div>
+        </div>
+
+        <div class="recommendation-form-container">
+            <h3>Leave a Recommendation</h3>
+            <form id="recommendation-form">
+                <input type="text" id="recommender-name" placeholder="Your Name" required>
+                <textarea id="new-recommendation" placeholder="Write your recommendation here..." required></textarea>
+                <button type="submit">Submit Recommendation</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <span id="close-popup" class="close-btn">&times;</span>
+            <p>Thanks for leaving a recommendation!</p>
+        </div>
+    </div>
+
+    <!-- The screenshot controls -->
+    <div id="screenshot-panel">
+        <h3>Auto Screenshot Tool</h3>
+        <button id="btn-task4" class="capture-btn">1. Download Task 4 (functionality.png)</button>
+        <button id="btn-task5" class="capture-btn">2. Download Task 5 (new_recommendation.png)</button>
+        <p style="font-size: 12px; margin-bottom: 0;">Clicking will download images to your PC</p>
+    </div>
+
+    <!-- We embed the script.js logic directly to avoid conflicts and add screenshot logic -->
+    <script>
+        // Standard script.js logic
+        const form = document.getElementById('recommendation-form');
+        const popup = document.getElementById('popup');
+        const closeBtn = document.getElementById('close-popup');
+        const recommendationList = document.getElementById('recommendation-list');
+
+        function showPopup() { popup.classList.remove('hidden'); }
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('recommender-name').value;
+            const text = document.getElementById('new-recommendation').value;
+            if (name && text) {
+                const newRec = document.createElement('div');
+                newRec.classList.add('recommendation');
+                newRec.innerHTML = `<p>"${text}" - ${name}</p>`;
+                recommendationList.appendChild(newRec);
+                showPopup();
+                form.reset();
+            }
+        });
+        
+        closeBtn.addEventListener('click', () => { popup.classList.add('hidden'); });
+
+        // Screenshot logic
+        function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+        }
+
+        document.getElementById('btn-task4').addEventListener('click', () => {
+            const panel = document.getElementById('screenshot-panel');
+            panel.style.display = 'none'; // hide panel from screenshot
+            window.scrollTo(0, 0); // scroll to top
+            
+            setTimeout(() => {
+                html2canvas(document.body, { useCORS: true }).then(canvas => {
+                    downloadURI(canvas.toDataURL("image/png"), "functionality.png");
+                    panel.style.display = 'block';
+                });
+            }, 500);
+        });
+
+        document.getElementById('btn-task5').addEventListener('click', () => {
+            const panel = document.getElementById('screenshot-panel');
+            
+            // Auto fill and submit the form
+            document.getElementById('recommender-name').value = "Professor Smith";
+            document.getElementById('new-recommendation').value = "Lithesh has completed a fantastic single-page portfolio website for this assignment!";
+            form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+            
+            panel.style.display = 'none'; // hide panel
+            
+            // Scroll down to the popup
+            window.scrollTo(0, document.body.scrollHeight);
+            
+            setTimeout(() => {
+                html2canvas(document.body, { useCORS: true }).then(canvas => {
+                    downloadURI(canvas.toDataURL("image/png"), "new_recommendation.png");
+                    panel.style.display = 'block';
+                    closeBtn.click(); // Close the popup after taking screenshot
+                });
+            }, 800);
+        });
+    </script>
+</body>
+</html>
