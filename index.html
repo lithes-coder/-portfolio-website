@@ -82,3 +82,29 @@
             </div>
             <div class="recommendation">
                 <p>"A great team player with exceptional problem-solving skills. Highly recommended!" - John Smith</p>
+            </div>
+            <div class="recommendation">
+                <p>"Lithesh's dedication to learning and applying new concepts is truly inspiring." - Alice Johnson</p>
+            </div>
+        </div>
+
+        <div class="recommendation-form-container">
+            <h3>Leave a Recommendation</h3>
+            <form id="recommendation-form" onsubmit="event.preventDefault(); addRecommendation();">
+                <input type="text" id="recommender-name" placeholder="Your Name" required>
+                <textarea id="new-recommendation" placeholder="Write your recommendation here..." required></textarea>
+                <button type="submit">Submit Recommendation</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <span id="close-popup" class="close-btn" onclick="showPopup(false)">&times;</span>
+            <p>Thanks for leaving a recommendation!</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
