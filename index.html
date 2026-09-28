@@ -5,27 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lithesh - Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
-        <!-- profile_name expected by grader -->
         <div class="profile_name">Lithesh</div>
-        
         <div class="nav-links">
-            <!-- topmenu class expected by grader -->
             <a href="#about" class="topmenu">About Me</a>
             <a href="#projects" class="topmenu">Project Details</a>
             <a href="#skills" class="topmenu">Skills</a>
             <a href="#recommendations" class="topmenu">Recommendations</a>
         </div>
-        
-        <!-- iconbutton and href="#home" expected by grader -->
         <a href="#home" class="iconbutton"><i class="fas fa-home"></i></a>
     </nav>
-
-    <!-- Target for #home -->
     <div id="home"></div>
 
     <section id="about" class="about-section">
@@ -41,7 +33,6 @@
     <section id="projects" class="projects-section">
         <h2>Project Details</h2>
         <div class="projects-grid">
-            <!-- project-card class expected by grader -->
             <div class="project-card">
                 <h3>E-Commerce Platform</h3>
                 <p>A full-stack e-commerce website built with React, Node.js, and MongoDB, featuring a fully functional cart and payment gateway integration.</p>
@@ -60,7 +51,6 @@
     <section id="skills" class="skills-section">
         <h2>Skills</h2>
         <div class="skills-grid">
-            <!-- skill class expected by grader -->
             <div class="skill">
                 <i class="fab fa-html5 skill-icon" style="color: #E34F26;"></i>
                 <span>HTML5</span>
@@ -87,35 +77,8 @@
     <section id="recommendations" class="recommendations-section">
         <h2>Recommendations</h2>
         <div id="recommendation-list" class="recommendation-list">
-            <!-- recommendation class expected by grader -->
             <div class="recommendation">
                 <p>"Lithesh is an outstanding developer who consistently delivers high-quality work on time." - Jane Doe</p>
             </div>
             <div class="recommendation">
                 <p>"A great team player with exceptional problem-solving skills. Highly recommended!" - John Smith</p>
-            </div>
-            <div class="recommendation">
-                <p>"Lithesh's dedication to learning and applying new concepts is truly inspiring." - Alice Johnson</p>
-            </div>
-        </div>
-
-        <div class="recommendation-form-container">
-            <h3>Leave a Recommendation</h3>
-            <form id="recommendation-form" onsubmit="event.preventDefault(); addRecommendation();">
-                <input type="text" id="recommender-name" placeholder="Your Name" required>
-                <textarea id="new-recommendation" placeholder="Write your recommendation here..." required></textarea>
-                <button type="submit">Submit Recommendation</button>
-            </form>
-        </div>
-    </section>
-
-    <div id="popup" class="popup hidden">
-        <div class="popup-content">
-            <span id="close-popup" class="close-btn" onclick="showPopup(false)">&times;</span>
-            <p>Thanks for leaving a recommendation!</p>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
